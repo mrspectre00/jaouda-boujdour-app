@@ -88,15 +88,16 @@
     // Debug function
     function updateStatus(message) {
       const status = document.getElementById('status');
-      status.textContent = message;
+      if (status) {
+        status.textContent = message;
+      }
       console.log(message);
     }
 
     window.addEventListener('load', function(ev) {
       updateStatus("Page loaded, initializing Flutter");
 
-      // Download main.dart.js
-      updateStatus("Loading Flutter engine");
+      // Create the Flutter initialization object with service worker info
       _flutter = {
         loader: {
           file: "main.dart.js",
@@ -106,26 +107,28 @@
         }
       };
       
-      // Initialize Flutter
       updateStatus("Starting Flutter initialization");
-      window.flutterConfiguration = {
-        canvasKitBaseUrl: "/canvaskit/"
+      
+      // Use standard script loading approach for this Flutter version
+      updateStatus("Loading application script");
+      var scriptLoaded = false;
+      var scriptLoadError = false;
+      var script = document.createElement('script');
+      script.src = 'main.dart.js';
+      script.type = 'application/javascript';
+      
+      script.onload = function() {
+        updateStatus("Application script loaded successfully");
+        scriptLoaded = true;
       };
       
-      // Load the Flutter engine
-      _flutter.loader.loadEntrypoint({
-        entrypointUrl: "main.dart.js",
-        onEntrypointLoaded: function(engineInitializer) {
-          updateStatus("Entrypoint loaded, initializing engine");
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            updateStatus("Engine initialized, running app");
-            appRunner.runApp();
-          }).catch(function(error) {
-            updateStatus("Error initializing engine: " + error);
-            console.error(error);
-          });
-        }
-      });
+      script.onerror = function(error) {
+        updateStatus("Failed to load application script: " + error);
+        scriptLoadError = true;
+        console.error('Failed to load app:', error);
+      };
+      
+      document.body.appendChild(script);
     });
   </script>
 </body>
