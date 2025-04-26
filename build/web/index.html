@@ -35,17 +35,68 @@
 
   <script>
     // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = ""2083818201"";
+    const serviceWorkerVersion = "2083818201";
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
 </head>
 <body>
-  <div id="loading">Loading...</div>
+  <div id="loading">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+        font-family: Arial, sans-serif;
+      }
+      #loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .loading-text {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #333;
+      }
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(0, 128, 255, 0.2);
+        border-top: 5px solid #0080ff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      #status {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #666;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+    <div class="spinner"></div>
+    <div class="loading-text">Loading application...</div>
+    <div id="status">Initializing...</div>
+  </div>
+
   <script>
+    // Debug function
+    function updateStatus(message) {
+      const status = document.getElementById('status');
+      status.textContent = message;
+      console.log(message);
+    }
+
     window.addEventListener('load', function(ev) {
-      var loading = document.querySelector('#loading');
+      updateStatus("Page loaded, initializing Flutter");
+
       // Download main.dart.js
+      updateStatus("Loading Flutter engine");
       _flutter = {
         loader: {
           file: "main.dart.js",
@@ -56,19 +107,25 @@
       };
       
       // Initialize Flutter
-      var scriptLoaded = false;
-      var scriptLoadError = false;
-      var script = document.createElement('script');
-      script.src = 'main.dart.js';
-      script.type = 'application/javascript';
-      script.onload = function() {
-        scriptLoaded = true;
+      updateStatus("Starting Flutter initialization");
+      window.flutterConfiguration = {
+        canvasKitBaseUrl: "/canvaskit/"
       };
-      script.onerror = function() {
-        scriptLoadError = true;
-        console.error('Failed to load app');
-      };
-      document.body.appendChild(script);
+      
+      // Load the Flutter engine
+      _flutter.loader.loadEntrypoint({
+        entrypointUrl: "main.dart.js",
+        onEntrypointLoaded: function(engineInitializer) {
+          updateStatus("Entrypoint loaded, initializing engine");
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            updateStatus("Engine initialized, running app");
+            appRunner.runApp();
+          }).catch(function(error) {
+            updateStatus("Error initializing engine: " + error);
+            console.error(error);
+          });
+        }
+      });
     });
   </script>
 </body>
