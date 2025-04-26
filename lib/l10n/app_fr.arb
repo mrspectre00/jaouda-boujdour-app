@@ -1,0 +1,51 @@
+{
+    "@@locale": "fr",
+    
+    "appTitle": "Jaouda Boujdour",
+    
+    "loginTitle": "Connexion",
+    "email": "Email",
+    "password": "Mot de passe",
+    "login": "Se connecter",
+    "forgotPassword": "Mot de passe oublié?",
+    
+    "dashboard": "Tableau de bord",
+    "markets": "Marchés",
+    "vendors": "Vendeurs",
+    "sales": "Ventes",
+    "stock": "Stock",
+    "settings": "Paramètres",
+    "products": "Produits",
+    "promotions": "Promotions",
+    "dailySummary": "Résumé journalier",
+    
+    "profile": "Profil",
+    "account": "Compte",
+    "logout": "Déconnexion",
+    "assignedRegions": "Régions assignées",
+    "language": "Langue",
+    "chooseLanguage": "Choisir la langue",
+    "english": "Anglais",
+    "french": "Français",
+    "arabic": "Arabe",
+    
+    "dailyStock": "Stock journalier",
+    "stockManagement": "Gestion des stocks",
+    "stockAssignment": "Attribution de stock",
+    "stockDashboard": "Tableau de bord des stocks",
+    
+    "addMarket": "Ajouter un marché",
+    "marketDetails": "Détails du marché",
+    "reviewMarkets": "Examiner les marchés",
+    
+    "recordSale": "Enregistrer une vente",
+    "addSale": "Ajouter une vente",
+    "saleDetails": "Détails de la vente",
+    
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "update": "Mettre à jour"
+} 

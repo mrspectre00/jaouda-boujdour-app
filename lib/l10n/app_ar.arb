@@ -1,0 +1,51 @@
+{
+    "@@locale": "ar",
+    
+    "appTitle": "جاودة بوجدور",
+    
+    "loginTitle": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "login": "تسجيل الدخول",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    
+    "dashboard": "لوحة التحكم",
+    "markets": "الأسواق",
+    "vendors": "البائعين",
+    "sales": "المبيعات",
+    "stock": "المخزون",
+    "settings": "الإعدادات",
+    "products": "المنتجات",
+    "promotions": "العروض",
+    "dailySummary": "الملخص اليومي",
+    
+    "profile": "الملف الشخصي",
+    "account": "الحساب",
+    "logout": "تسجيل الخروج",
+    "assignedRegions": "المناطق المخصصة",
+    "language": "اللغة",
+    "chooseLanguage": "اختر اللغة",
+    "english": "الإنجليزية",
+    "french": "الفرنسية",
+    "arabic": "العربية",
+    
+    "dailyStock": "المخزون اليومي",
+    "stockManagement": "إدارة المخزون",
+    "stockAssignment": "تخصيص المخزون",
+    "stockDashboard": "لوحة تحكم المخزون",
+    
+    "addMarket": "إضافة سوق",
+    "marketDetails": "تفاصيل السوق",
+    "reviewMarkets": "مراجعة الأسواق",
+    
+    "recordSale": "تسجيل بيع",
+    "addSale": "إضافة بيع",
+    "saleDetails": "تفاصيل البيع",
+    
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "update": "تحديث"
+} 

@@ -4,6 +4,9 @@ import 'package:jaouda_boujdour_app/config/theme.dart';
 import 'package:jaouda_boujdour_app/config/router.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'providers/locale_provider.dart';
 // import 'services/firestore_service.dart';
 
 void main() async {
@@ -46,6 +49,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
+    final locale = ref.watch(localeProvider);
 
     return MaterialApp.router(
       title: 'Jaouda Boujdour',
@@ -54,6 +58,20 @@ class MyApp extends ConsumerWidget {
       themeMode: ThemeMode.system,
       routerConfig: router,
       debugShowCheckedModeBanner: false,
+
+      // Localization settings
+      locale: locale,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'), // English
+        Locale('fr'), // French
+        Locale('ar'), // Arabic
+      ],
     );
   }
 }

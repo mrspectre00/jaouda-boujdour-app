@@ -1,0 +1,51 @@
+{
+    "@@locale": "en",
+    
+    "appTitle": "Jaouda Boujdour",
+    
+    "loginTitle": "Login",
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "forgotPassword": "Forgot Password?",
+    
+    "dashboard": "Dashboard",
+    "markets": "Markets",
+    "vendors": "Vendors",
+    "sales": "Sales",
+    "stock": "Stock",
+    "settings": "Settings",
+    "products": "Products",
+    "promotions": "Promotions",
+    "dailySummary": "Daily Summary",
+    
+    "profile": "Profile",
+    "account": "Account",
+    "logout": "Logout",
+    "assignedRegions": "Assigned Regions",
+    "language": "Language",
+    "chooseLanguage": "Choose Language",
+    "english": "English",
+    "french": "French",
+    "arabic": "Arabic",
+    
+    "dailyStock": "Daily Stock",
+    "stockManagement": "Stock Management",
+    "stockAssignment": "Stock Assignment",
+    "stockDashboard": "Stock Dashboard",
+    
+    "addMarket": "Add Market",
+    "marketDetails": "Market Details",
+    "reviewMarkets": "Review Markets",
+    
+    "recordSale": "Record Sale",
+    "addSale": "Add Sale",
+    "saleDetails": "Sale Details",
+    
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "update": "Update"
+} 
