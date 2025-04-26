@@ -16,6 +16,9 @@
   -->
   <base href="/">
 
+  <!-- Critical patch script to fix null check errors -->
+  <script src="patch.js"></script>
+
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
@@ -41,6 +44,8 @@
 
   <!-- Environment variables for web -->
   <script src="config.js"></script>
+  <script src="dotenv.js"></script>
+  <script src="assets/packages/flutter_dotenv/dotenv.js"></script>
 
   <script>
     // The value below is injected by flutter build, do not touch.
@@ -103,6 +108,28 @@
 
     window.addEventListener('load', function(ev) {
       updateStatus("Page loaded, initializing Flutter");
+
+      // Make sure our environment variables are properly set before loading Flutter
+      if (!window.SUPABASE_URL) {
+        updateStatus("Ensuring environment variables are set");
+        window.SUPABASE_URL = "https://hvxgdyxqmkpmhejpumlc.supabase.co";
+        window.SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2eGdkeXhxbWtwbWhlanB1bWxjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0Nzk2OTMsImV4cCI6MjA2MDA1NTY5M30.JfS42uMEMgqNiKKfF17OKjMa6QRq6LUaJkESdAdLmdA";
+        window.OPENROUTESERVICE_API_KEY = "5b3ce3597851110001cf6248c39073c1932f417f9d57d67334af0a15";
+        window.OPENROUTE_API_KEY = "5b3ce3597851110001cf6248c39073c1932f417f9d57d67334af0a15";
+      }
+
+      // Create a global object for Flutter dotenv compatibility
+      window.flutter_dotenv = window.flutter_dotenv || {
+        env: {
+          SUPABASE_URL: "https://hvxgdyxqmkpmhejpumlc.supabase.co",
+          SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2eGdkeXhxbWtwbWhlanB1bWxjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0Nzk2OTMsImV4cCI6MjA2MDA1NTY5M30.JfS42uMEMgqNiKKfF17OKjMa6QRq6LUaJkESdAdLmdA",
+          OPENROUTESERVICE_API_KEY: "5b3ce3597851110001cf6248c39073c1932f417f9d57d67334af0a15",
+          OPENROUTE_API_KEY: "5b3ce3597851110001cf6248c39073c1932f417f9d57d67334af0a15"
+        },
+        get: function(key) {
+          return this.env[key] || null;
+        }
+      };
 
       // Download main.dart.js
       updateStatus("Loading Flutter engine");
