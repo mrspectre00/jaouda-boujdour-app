@@ -1,9 +1,21 @@
 [build]
   command = """
-    git clone https://github.com/flutter/flutter.git -b stable
-    export PATH="$PATH:$PWD/flutter/bin"
+    echo "Cloning Flutter..."
+    git clone https://github.com/flutter/flutter.git -b stable --depth 1
+    export PATH="$PATH:`pwd`/flutter/bin"
+    
+    echo "Setting up Flutter environment..."
+    flutter doctor -v
     flutter config --enable-web
-    flutter build web
+    
+    echo "Building Flutter web app with HTML renderer..."
+    cd "$PWD"
+    flutter clean
+    flutter pub get
+    flutter build web --release --web-renderer html --verbose
+    
+    echo "Build completed, checking output directory..."
+    ls -la build/web
   """
   publish = "build/web"
 
