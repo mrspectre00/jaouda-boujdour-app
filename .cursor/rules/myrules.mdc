@@ -1,0 +1,14 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+- You can @ files here
+- You can use markdown but dont have to
+
+1. always test the app after finish the editing, and make sure that everything working well, if not update until you fix the issues.
+2. keep the structure of the project and don't remove anything to fix issues, fix the erros without removing something essential.
+3. when i give a list of task, do all of them one by one ! don't skip nothing and make sure that all working well
