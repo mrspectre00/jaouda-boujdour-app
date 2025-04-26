@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Debug Flutter Web Loading</title>
+  <!-- Include our config.js -->
+  <script src="config.js"></script>
   <script>
     // Function to check if main.dart.js exists and is loadable
     async function checkFile(url) {
@@ -32,14 +34,26 @@
       const flutterJsCheck = await checkFile('flutter.js');
       results.innerHTML += `<p>flutter.js: ${JSON.stringify(flutterJsCheck)}</p>`;
       
-      // Test 3: Check browser capabilities
+      // Test 3: Check if config.js exists
+      const configJsCheck = await checkFile('config.js');
+      results.innerHTML += `<p>config.js: ${JSON.stringify(configJsCheck)}</p>`;
+      
+      // Test 4: Check browser capabilities
       results.innerHTML += `<p>User Agent: ${navigator.userAgent}</p>`;
       
-      // Test 4: Check for wasm support
+      // Test 5: Check for wasm support
       results.innerHTML += `<p>WebAssembly Support: ${"WebAssembly" in window}</p>`;
       
-      // Test 5: Check for SharedArrayBuffer support (needed for some Flutter features)
+      // Test 6: Check for SharedArrayBuffer support (needed for some Flutter features)
       results.innerHTML += `<p>SharedArrayBuffer Support: ${"SharedArrayBuffer" in window}</p>`;
+      
+      // Test 7: Show environment variables 
+      results.innerHTML += `<p>Environment Variables: </p>`;
+      if (window.ENV) {
+        results.innerHTML += `<pre>${JSON.stringify(window.ENV, null, 2)}</pre>`;
+      } else {
+        results.innerHTML += `<p>No ENV object found in window</p>`;
+      }
     }
   </script>
 </head>
