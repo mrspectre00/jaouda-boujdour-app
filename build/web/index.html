@@ -16,18 +16,9 @@
   -->
   <base href="/">
 
-  <!-- Critical patch script to fix null check errors -->
-  <script src="patch.js"></script>
-
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
-
-  <!-- Environment Variables in meta tags -->
-  <meta name="env:SUPABASE_URL" content="https://hvxgdyxqmkpmhejpumlc.supabase.co">
-  <meta name="env:SUPABASE_ANON_KEY" content="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2eGdkeXhxbWtwbWhlanB1bWxjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0Nzk2OTMsImV4cCI6MjA2MDA1NTY5M30.JfS42uMEMgqNiKKfF17OKjMa6QRq6LUaJkESdAdLmdA">
-  <meta name="env:OPENROUTESERVICE_API_KEY" content="5b3ce3597851110001cf6248c39073c1932f417f9d57d67334af0a15">
-  <meta name="env:OPENROUTE_API_KEY" content="5b3ce3597851110001cf6248c39073c1932f417f9d57d67334af0a15">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -42,119 +33,21 @@
   <title>jaouda_boujdour_app</title>
   <link rel="manifest" href="manifest.json">
 
-  <!-- Environment variables for web -->
-  <script src="config.js"></script>
-  <script src="dotenv.js"></script>
-  <script src="assets/packages/flutter_dotenv/dotenv.js"></script>
-
   <script>
     // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = "2750905363";
+    const serviceWorkerVersion = ""2083818201"";
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
 </head>
 <body>
-  <div id="loading">
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #f5f5f5;
-        font-family: Arial, sans-serif;
-      }
-      #loading {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-      }
-      .loading-text {
-        margin-top: 20px;
-        font-size: 18px;
-        color: #333;
-      }
-      .spinner {
-        width: 50px;
-        height: 50px;
-        border: 5px solid rgba(0, 128, 255, 0.2);
-        border-top: 5px solid #0080ff;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-      #status {
-        margin-top: 10px;
-        font-size: 14px;
-        color: #666;
-      }
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-    </style>
-    <div class="spinner"></div>
-    <div class="loading-text">Loading application...</div>
-    <div id="status">Initializing...</div>
-  </div>
-
+  <div id="loading">Loading...</div>
   <script>
-    // Debug function
-    function updateStatus(message) {
-      const status = document.getElementById('status');
-      status.textContent = message;
-      console.log(message);
-    }
-
     window.addEventListener('load', function(ev) {
-      updateStatus("Page loaded, initializing Flutter");
-
-      // Make sure our environment variables are properly set before loading Flutter
-      if (!window.SUPABASE_URL) {
-        updateStatus("Ensuring environment variables are set");
-        window.SUPABASE_URL = "https://hvxgdyxqmkpmhejpumlc.supabase.co";
-        window.SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2eGdkeXhxbWtwbWhlanB1bWxjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0Nzk2OTMsImV4cCI6MjA2MDA1NTY5M30.JfS42uMEMgqNiKKfF17OKjMa6QRq6LUaJkESdAdLmdA";
-        window.OPENROUTESERVICE_API_KEY = "5b3ce3597851110001cf6248c39073c1932f417f9d57d67334af0a15";
-        window.OPENROUTE_API_KEY = "5b3ce3597851110001cf6248c39073c1932f417f9d57d67334af0a15";
-      }
-
-      // Create a global object for Flutter dotenv compatibility
-      window.flutter_dotenv = window.flutter_dotenv || {
-        env: {
-          SUPABASE_URL: "https://hvxgdyxqmkpmhejpumlc.supabase.co",
-          SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2eGdkeXhxbWtwbWhlanB1bWxjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0Nzk2OTMsImV4cCI6MjA2MDA1NTY5M30.JfS42uMEMgqNiKKfF17OKjMa6QRq6LUaJkESdAdLmdA",
-          OPENROUTESERVICE_API_KEY: "5b3ce3597851110001cf6248c39073c1932f417f9d57d67334af0a15",
-          OPENROUTE_API_KEY: "5b3ce3597851110001cf6248c39073c1932f417f9d57d67334af0a15"
-        },
-        get: function(key) {
-          return this.env[key] || null;
-        }
-      };
-
+      var loading = document.querySelector('#loading');
       // Download main.dart.js
-      updateStatus("Loading Flutter engine");
       _flutter = {
         loader: {
-          loadEntrypoint: function(options) {
-            return new Promise(function(resolve, reject) {
-              updateStatus("Loading application script");
-              var scriptTag = document.createElement('script');
-              scriptTag.src = options.entrypointUrl;
-              scriptTag.type = 'application/javascript';
-              scriptTag.onload = function() {
-                updateStatus("Application script loaded successfully");
-                resolve();
-              };
-              scriptTag.onerror = function(error) {
-                updateStatus("Failed to load application script: " + error);
-                reject(error);
-              };
-              document.body.appendChild(scriptTag);
-            });
-          },
-          didCreateEngine: function(engine) {
-            updateStatus("Flutter engine created");
-          },
           file: "main.dart.js",
           serviceWorker: {
             serviceWorkerVersion: serviceWorkerVersion,
@@ -163,27 +56,19 @@
       };
       
       // Initialize Flutter
-      updateStatus("Starting Flutter initialization");
-      window.flutterConfiguration = {
-        canvasKitBaseUrl: "/canvaskit/"
+      var scriptLoaded = false;
+      var scriptLoadError = false;
+      var script = document.createElement('script');
+      script.src = 'main.dart.js';
+      script.type = 'application/javascript';
+      script.onload = function() {
+        scriptLoaded = true;
       };
-      
-      _flutter.loader.loadEntrypoint({
-        entrypointUrl: "main.dart.js",
-        onEntrypointLoaded: function(engineInitializer) {
-          updateStatus("Entrypoint loaded, initializing engine");
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            updateStatus("Engine initialized, running app");
-            appRunner.runApp();
-          }).catch(function(error) {
-            updateStatus("Error initializing engine: " + error);
-            console.error(error);
-          });
-        }
-      }).catch(function(error) {
-        updateStatus("Error loading entrypoint: " + error);
-        console.error(error);
-      });
+      script.onerror = function() {
+        scriptLoadError = true;
+        console.error('Failed to load app');
+      };
+      document.body.appendChild(script);
     });
   </script>
 </body>
