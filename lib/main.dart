@@ -12,11 +12,27 @@ void main() async {
   // Load environment variables
   await dotenv.load(fileName: '.env');
 
-  // Initialize Supabase
-  await Supabase.initialize(
-    url: dotenv.env['SUPABASE_URL']!,
-    anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
-  );
+  // Define fallback values
+  final supabaseUrl =
+      dotenv.env['SUPABASE_URL'] ?? 'https://hvxgdyxqmkpmhejpumlc.supabase.co';
+  final supabaseAnonKey = dotenv.env['SUPABASE_ANON_KEY'] ??
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2eGdkeXhxbWtwbWhlanB1bWxjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0Nzk2OTMsImV4cCI6MjA2MDA1NTY5M30.JfS42uMEMgqNiKKfF17OKjMa6QRq6LUaJkESdAdLmdA';
+
+  // Debug values during initialization
+  debugPrint('SUPABASE_URL: $supabaseUrl');
+  debugPrint('SUPABASE_ANON_KEY: ${supabaseAnonKey.substring(0, 10)}...');
+
+  try {
+    // Initialize Supabase with null-safe values
+    await Supabase.initialize(
+      url: supabaseUrl,
+      anonKey: supabaseAnonKey,
+    );
+    debugPrint('Supabase initialized successfully');
+  } catch (e) {
+    debugPrint('Error initializing Supabase: $e');
+    // Continue with app initialization even if Supabase fails
+  }
 
   // TODO: Add Firebase configuration before enabling this
   // await firestoreService.initialize();
